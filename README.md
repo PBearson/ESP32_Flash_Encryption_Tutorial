@@ -61,9 +61,23 @@ idf.py menuconfig
 
 Navigate to the menu `Security features`. Select the option `Enable flash encryption on boot`. By default, the usage mode should be selected as `Developmeent (NOT SECURE)`. Do not change this setting.
 
-Press ESC and change to the `Partition Table` menu. We need to change the offset of the partition table because the bootloader (which is stored in flash _before_ the partition table) will grow in size. Change the offset of the partition table from 0x8000 to 0x10000. Now leave and save the configuration.
+Press ESC and change to the `Partition Table` menu. We need to change the offset of the partition table because the bootloader (which is stored in flash _before_ the partition table) will grow in size. Change the offset of the partition table from 0x8000 to 0x10000.
 
+Press ESC and change to the `Component config` menu. From here, navigate to the `NVS` menu. Disable the option `Enable NVS encryption`, since we are not interested in encrypting the NVS (non-volatile storage) partition.
 
+Now leave and save the configuration.
+
+### Upload the Application
+
+Build, flash, and monitor the application just as before:
+
+```
+idf.py build flash monitor
+```
+
+When the serial terminal connects to the ESP32, you should see that the bootloader, partition table, and firmware are all encrypted:
+
+![image](https://user-images.githubusercontent.com/11084018/158298515-6e9a4f03-aceb-4077-ae67-d2e44b9dcca5.png)
 
 ## Disable Flash Encryption
 
