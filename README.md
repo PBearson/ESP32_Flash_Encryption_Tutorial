@@ -25,7 +25,7 @@ First, we will see how an attacker can steal the credentials from a plaintext fi
 
 ### Configure the WiFi Application
 
-Open the configuration menu:
+Open a terminal, and navigate to the root directory of this project. Open the project configuration menu:
 
 ```
 idf.py menuconfig
