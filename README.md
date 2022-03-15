@@ -1,6 +1,6 @@
 # ESP32 Flash Encryption Tutorial
 
-This project demonstrates how to enable flash encryption (Development Mode) on the ESP32. First, we will see how devices without flash encryption are insecure. We will steal the WiFi credentials of a firmware running on the ESP32. Then we will enable flash encryption and show how an attacker cannot steal credentials when flash encryption is enabled. Finally, we will see how flash encryption can be disabled.
+This project demonstrates how to enable flash encryption (Development Mode) on the ESP32. First, we will see how devices without flash encryption are insecure. We will steal the WiFi credentials of a firmware running on the ESP32. Then we will enable flash encryption and show how an attacker cannot steal credentials when flash encryption is enabled. Finally, we will show how flash encryption can be disabled.
 
 ## Prerequisites
 
