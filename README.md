@@ -1,6 +1,27 @@
 # ESP32 Flash Encryption Tutorial
 
-## Prerequisite - Steal WiFi Credentials in Plaintext Flash
+This project demonstrates how to enable flash encryption (Development Mode) on the ESP32. First, we will see how devices without flash encryption are insecure. We will steal the WiFi credentials of a firmware running on the ESP32. Then we will enable flash encryption and show how an attacker cannot steal credentials when flash encryption is enabled. Finally, we will see how flash encryption can be disabled.
+
+## Prerequisites
+
+For this project, you need:
+
+* An ESP32 development board, such as Hiletgo ESP-WROOM-32.
+* A Linux Virtual Machine with ESP-IDF (version 4) installed.
+
+You are encouraged to use the following Ubuntu VM: https://www.dropbox.com/s/0g7w8qduzj2rb1k/UbuntuIoT.ova?dl=0
+
+Follow these instructions to install ESP-IDF version 4.4: https://docs.espressif.com/projects/esp-idf/en/v4.4/esp32/get-started/index.html#get-started-get-prerequisites
+
+After installing ESP-IDF, download this repository into your VM:
+
+```
+git clone https://github.com/PBearson/ESP32_Flash_Encryption_Tutorial.git
+```
+
+## Steal WiFi Credentials in Plaintext Flash
+
+First, we will see how an attacker can steal the credentials from a plaintext firmware.
 
 ### Configure the WiFi Application
 
