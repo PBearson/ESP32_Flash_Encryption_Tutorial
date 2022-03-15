@@ -31,7 +31,7 @@ Open a terminal, and navigate to the root directory of this project. Open the pr
 idf.py menuconfig
 ```
 
-Using the up/down arrow keys, navigate to the `Example Configuration` menu, press enter to enter into the menu, then press enter to begin typing your WiFi SSID. When you are done, do the same for the WiFi Password. After you are done, press ESC several times until you are prompted to save. Press Y to save and exit.
+Using the up/down arrow keys, navigate to the `Example Configuration` menu, press _enter_ to enter into the menu, then press _enter_ to begin typing your WiFi SSID. When you are done, do the same for the WiFi Password. After you are done, press _ESC_ several times until you are prompted to save. Press _Y_ to save and exit.
 
 ### Upload the Application
 
@@ -49,7 +49,7 @@ After a few minutes of compiling, the project will be flashed to the board, and 
 
 ### Steal WiFi Credentials
 
-Download the first 65536 bytes of the firmware from the ESP32 using the following command:
+Now we will atempt to steal the WiFi credentials by reading the flash contents of the ESP32 directly. Download the first 65536 bytes of the firmware from the ESP32 using the following command:
 
 ```
 esptool.py read_flash 0x10000 0x10000 flash.bin
