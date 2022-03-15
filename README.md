@@ -79,9 +79,15 @@ When the serial terminal connects to the ESP32, you should see that the bootload
 
 ![image](https://user-images.githubusercontent.com/11084018/158298515-6e9a4f03-aceb-4077-ae67-d2e44b9dcca5.png)
 
+### Try to Steal WiFi Credentials
+
+TODO
+
 ## Disable Flash Encryption
 
 If the user wishes to disable flash encryption, please follow the steps below.
+
+**CAUTION: The following procedure can only be performed 3 times, due to the limited size of the FLASH_CRYPT_CNT eFuse.**
 
 First, open the configuration menu, navigate to `Security features`, and disable the option `Enable flash encryption on boot`.
 
