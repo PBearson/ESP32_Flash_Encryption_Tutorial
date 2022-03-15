@@ -63,7 +63,22 @@ Navigate to the menu `Security features`. Select the option `Enable flash encryp
 
 Press ESC and change to the `Partition Table` menu. We need to change the offset of the partition table because the bootloader (which is stored in flash _before_ the partition table) will grow in size. Change the offset of the partition table from 0x8000 to 0x10000. Now leave and save the configuration.
 
+
+
 ## Disable Flash Encryption
 
 If the user wishes to disable flash encryption, please follow the steps below.
 
+First, open the configuration menu, navigate to `Security features`, and disable the option `Enable flash encryption on boot`.
+
+Next, build and flash the application: 
+
+```idf.py build flash```
+
+Finally, set the next bit in the FLASH_CRYPT_CNT eFuse to disable flash encrpytion:
+
+```
+espefuse.py burn_efuse FLASH_CRYPT_CNT
+````
+
+Follow the instructions and type `BURN` to finish setting the eFuse.
