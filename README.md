@@ -102,7 +102,19 @@ When the serial terminal connects to the ESP32, you should see that the bootload
 
 ### Try to Steal WiFi Credentials
 
-TODO
+Now we will download the firmware and try to steal the WiFi credentials, just as before. Since we changed the partition table offset, the firmware was actually flashed at offset 0x20000 instead of 0x10000. Therefore, to download the first 65536 bytes of the firmware, use the following command:
+
+```
+esptool.py read_flash 0x20000 0x10000 flash_encrypted.bin
+```
+
+Now try to read the credentials just like before:
+
+```
+strings flash_encrypted.bin | grep -A1 <SSID>   # Replace <SSID> with your WiFi SSID
+```
+
+You will see that nothing is returned. This indicates that flash encryption is enabled and the WiFi credentials can no longer be recovered.
 
 ## Disable Flash Encryption
 
