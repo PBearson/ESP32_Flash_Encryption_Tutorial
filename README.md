@@ -126,7 +126,9 @@ First, open the configuration menu, navigate to `Security features`, and disable
 
 Next, build and flash the application: 
 
-```idf.py build flash```
+```
+idf.py build flash
+```
 
 Finally, set the next bit in the FLASH_CRYPT_CNT eFuse to disable flash encrpytion:
 
