@@ -137,3 +137,7 @@ espefuse.py burn_efuse FLASH_CRYPT_CNT
 ````
 
 Follow the instructions and type `BURN` to finish setting the eFuse.
+
+## Enable Secure Boot After Flash Encryption is Enabled
+
+You can follow [this procedure](https://github.com/PBearson/ESP32_Secure_Boot_Tutorial) to enable secure boot even after flash encryption already enabled. You will first need to temporarily disable flash encryption, otherwise you cannot upload new plaintext firmware images to the ESP32.
