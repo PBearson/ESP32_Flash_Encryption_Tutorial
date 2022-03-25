@@ -65,10 +65,10 @@ strings flash.bin | grep -A1 <SSID>   # Replace <SSID> with your WiFi SSID
 
 ## Enable Flash Encryption
 
-Now we will enable flash encryption, a security mechanism supported of the ESP32 that defeats attacks like the one demonstrated above. The ESP32 supports two kinds of flash encryption modes: Release, and Development:
+Now we will enable flash encryption, a security mechanism supported by the ESP32 that defeats attacks like the one demonstrated above. The ESP32 supports two kinds of flash encryption modes: Release, and Development:
 
-* In **Release Mode**, flash encryption is permanently enabled, and the user cannot upload anymore plaintext firmware to the board.
-* In **Development Mode**, flash encryption can be disabled a limited number of times, allowing the user to upload new plaintext firmware.
+* In **Release Mode**, flash encryption is permanently enabled, and the DOWNLOAD_DL_ENCRYPT eFuse is burned. This means the user cannot upload anymore plaintext firmware to the board.
+* In **Development Mode**, flash encryption can be disabled a limited number of times, and the DOWNLOAD_DL_ENCRYPT eFuse is not burned. This allows the user to upload new plaintext firmware.
 
 For this project, we will only use Development Mode.
 
@@ -116,6 +116,10 @@ strings flash_encrypted.bin | grep -A1 <SSID>   # Replace <SSID> with your WiFi 
 
 You will see that nothing is returned. This indicates that flash encryption is enabled and the WiFi credentials can no longer be recovered.
 
+## Flash Plaintext Firmware After Flash Encryption is Enabled
+
+As long as the DISABLE_DL_ENCRYPT eFuse remains 0, the user can always upload plaintext firmware to the board, even after flash encryption is enabled. The firmware will be encrypted by the ESP32's UART bootloader when the user uploads new firmware. To upload new firmware after flash encryption is enabled, simply replace all `idf.py flash` commands with `idf.py encrypted-flash`.
+
 ## Disable Flash Encryption
 
 If the user wishes to disable flash encryption, please follow the steps below.
@@ -130,7 +134,7 @@ Next, build and flash the application:
 idf.py build flash
 ```
 
-Finally, set the next bit in the FLASH_CRYPT_CNT eFuse to disable flash encrpytion:
+Finally, set the next bit in the FLASH_CRYPT_CNT eFuse to disable flash encryption:
 
 ```
 espefuse.py burn_efuse FLASH_CRYPT_CNT
@@ -138,6 +142,10 @@ espefuse.py burn_efuse FLASH_CRYPT_CNT
 
 Follow the instructions and type `BURN` to finish setting the eFuse.
 
+### Re-enable Flash Encryption
+
+To re-enable flash encryption, enable the option `Enable flash encryption on boot` in the configuration menu, and build and flash the application. The bootloader will automatically set the next bit in the FLASH_CRYPT_CNT eFuse to enable flash encryption; there is no need for the user to manually burn the efuse.
+
 ## Enable Secure Boot After Flash Encryption is Enabled
 
-You can follow [this procedure](https://github.com/PBearson/ESP32_Secure_Boot_Tutorial) to enable secure boot even after flash encryption already enabled. You will first need to temporarily disable flash encryption, otherwise you cannot upload new plaintext firmware images to the ESP32.
+You can follow [this procedure](https://github.com/PBearson/ESP32_Secure_Boot_Tutorial) to enable secure boot even after flash encryption already enabled. There is no need to disable flash encryption.
