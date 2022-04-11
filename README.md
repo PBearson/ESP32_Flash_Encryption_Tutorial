@@ -185,3 +185,7 @@ You can follow [this procedure](https://github.com/PBearson/ESP32_Secure_Boot_Tu
 ```
 espefuse.py summary
 ```
+
+### Possible failures
+
+[Typical failure cases](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/security/flash-encryption.html#possible-failures)
