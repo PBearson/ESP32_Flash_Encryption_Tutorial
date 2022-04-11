@@ -117,6 +117,16 @@ When the serial terminal connects to the ESP32, you should see that the bootload
 
 ![image](https://user-images.githubusercontent.com/11084018/158298515-6e9a4f03-aceb-4077-ae67-d2e44b9dcca5.png)
 
+If errors are displayed in this step as follows
+```
+espefuse.py burn_efuse FLASH_CRYPT_CNT
+idf.py encrypted-flash
+````
+
+![image](https://user-images.githubusercontent.com/69218457/162789473-2f6f5b53-7296-4fb9-936a-a6ec54d657e9.png)
+
+
+
 ### Try to Steal WiFi Credentials
 
 Now we will download the firmware and try to steal the WiFi credentials, just as before. Since we changed the partition table offset, the firmware was actually flashed at offset 0x20000 instead of 0x10000. Therefore, to download the first 65536 bytes of the firmware, use the following command:
