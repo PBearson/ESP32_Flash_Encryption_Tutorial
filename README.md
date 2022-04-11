@@ -117,7 +117,7 @@ When the serial terminal connects to the ESP32, you should see that the bootload
 
 ![image](https://user-images.githubusercontent.com/11084018/158298515-6e9a4f03-aceb-4077-ae67-d2e44b9dcca5.png)
 
-If errors like "*flash read err, 1000*" as follows are displayed after running *idf.py build flash monitor*, use the following two commands
+If errors like "*flash read err, 1000*" as follows occur after running *idf.py build flash monitor*, use the following two commands
 ```
 espefuse.py burn_efuse FLASH_CRYPT_CNT
 idf.py encrypted-flash
