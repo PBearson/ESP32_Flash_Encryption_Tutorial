@@ -43,7 +43,7 @@ First, we will see how an attacker can steal the credentials from a plaintext fi
 
 ### 3. Configure the WiFi Application
 
-Open a terminal, and navigate to the root directory of this project. Open the project configuration menu:
+Within the terminal with the configured environment, navigate to the root directory of this project if needed. Open the project configuration menu:
 
 ```
 idf.py menuconfig
@@ -58,7 +58,7 @@ Now build, upload, and monitor the app:
 ```
 idf.py build flash monitor
 ```
-*CTRL+]* to terminate the serial monitor.
+*CTRL+]* to terminate the serial monitor when needed.
 
 **NOTE: If using the Hiletgo ESP-WROOM-32 development board, you may need to hold down the IO0 button on the ESP32 when the build system tries to connect to the ESP32's serial port. If you do not hold down the IO0 button during this step, the build system may fail to detect the serial port.**
 
@@ -86,7 +86,7 @@ strings flash.bin | grep -A1 <SSID>   # Replace <SSID> with your WiFi SSID
 
 Now we will enable flash encryption, a security mechanism supported by the ESP32 that defeats attacks like the one demonstrated above. The ESP32 supports two kinds of flash encryption modes: Release, and Development:
 
-* In **Release Mode**, flash encryption is permanently enabled, and the DOWNLOAD_DL_ENCRYPT eFuse is burned. This means the user cannot upload anymore plaintext firmware to the board.
+* In **Release Mode**, flash encryption is permanently enabled, and the DOWNLOAD_DL_ENCRYPT eFuse is burned. This means the user cannot upload anymore plaintext firmware to the board via UART any more, and the firmware can only be updated via OTA in the release mode.
 * In **Development Mode**, flash encryption can be disabled a limited number of times, and the DOWNLOAD_DL_ENCRYPT eFuse is not burned. This allows the user to upload new plaintext firmware.
 
 For this project, we will only use Development Mode.
@@ -105,7 +105,7 @@ Press ESC and change to the `Partition Table` menu. We need to change the offset
 
 Press ESC and change to the `Component config` menu. From here, navigate to the `NVS` menu. Disable the option `Enable NVS encryption`, since we are not interested in encrypting the NVS (non-volatile storage) partition.
 
-Now leave and save the configuration.
+Do not touch other configurations. Now leave and save the configuration.
 
 ### 8. Upload the Application
 
@@ -119,7 +119,7 @@ When the serial terminal connects to the ESP32, you should see that the bootload
 
 ![image](https://user-images.githubusercontent.com/11084018/158298515-6e9a4f03-aceb-4077-ae67-d2e44b9dcca5.png)
 
-If errors like "*flash read err, 1000*" as follows occur after running *idf.py build flash monitor*, use the following two commands
+If errors like "*flash read err, 1000*" as follows occur after running *idf.py build flash monitor*, use the following two commands to solve the problems
 ```
 espefuse.py burn_efuse FLASH_CRYPT_CNT
 idf.py encrypted-flash
@@ -146,7 +146,7 @@ You will see that nothing is returned. This indicates that flash encryption is e
 
 ## 10. Disable Flash Encryption
 
-If the user wishes to disable flash encryption, please follow the steps below.
+To disable flash encryption, please follow the steps below.
 
 **CAUTION: The following procedure can only be performed 3 times, due to the limited size of the FLASH_CRYPT_CNT eFuse.**
 
