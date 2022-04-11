@@ -25,12 +25,14 @@ Use *File* -> *Open Folder ...* to load the project into VS Code
 
 ### Start terminal and set up the environment variables
 
+We will start the terminal within VS Code (not the Linux terminal). 
+
 <img src="imgs/VSCodeTerminal.png">
 
+Within the VS Code terminal, set up the environment variables so that we can use all the tools without inputting the full path names.
 ```
 . $HOME/esp/esp-idf/export.sh
 ```
-
 
 ### 
 
