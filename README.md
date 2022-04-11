@@ -4,10 +4,7 @@ This project demonstrates how to enable flash encryption (Development Mode) on t
 
 ## Setup
 
-For this project, you need:
-
-* An ESP32 development board, such as Hiletgo ESP-WROOM-32.
-* A Linux Virtual Machine with ESP-IDF (version 4) installed.
+For this project, we need to use a variety of ESP-IDF tools. For simplicity, we will use the ESP-IDF extension with VS Code and its terminal to use the tools.
 
 ### Install the ESP-IDF extension 
 Our new Ubuntu VM is intalled with the ESP-IDF extension. If you do not want to install it yourself, please download it at the specified website.
