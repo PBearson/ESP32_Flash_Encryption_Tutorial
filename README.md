@@ -6,12 +6,12 @@ This project demonstrates how to enable flash encryption (Development Mode) on t
 
 For this project, we need to use a variety of ESP-IDF tools. For simplicity, we will use the ESP-IDF extension with VS Code and its terminal to use the tools.
 
-### Install the ESP-IDF extension 
+### 1. Install the ESP-IDF extension 
 Our new Ubuntu VM is intalled with the ESP-IDF extension. If you do not want to install it yourself, please download it at the specified website.
 
 Otherwise, please follow [this tutorial](https://github.com/espressif/vscode-esp-idf-extension/blob/master/docs/tutorial/install.md) to iinstall it within VS Code.
 
-### Download this repository
+### 2. Download this repository
 
 After installing ESP-IDF, download this repository into your VM:
 
@@ -41,7 +41,7 @@ All later commands shall be entered in the same terminal.
 
 First, we will see how an attacker can steal the credentials from a plaintext firmware.
 
-### Configure the WiFi Application
+### 3. Configure the WiFi Application
 
 Open a terminal, and navigate to the root directory of this project. Open the project configuration menu:
 
@@ -51,7 +51,7 @@ idf.py menuconfig
 
 Using the up/down arrow keys, navigate to the `Example Configuration` menu, press _enter_ to enter into the menu, then press _enter_ to begin typing your WiFi SSID. When you are done, do the same for the WiFi Password. After you are done, press _ESC_ several times until you are prompted to save. Press _Y_ to save and exit.
 
-### Upload the Application
+### 4. Upload the Application
 
 Now build, upload, and monitor the app:
 
@@ -66,7 +66,7 @@ After a few minutes of compiling, the project will be flashed to the board, and 
 
 ![image](https://user-images.githubusercontent.com/11084018/158292160-46c9c3f7-0633-4d00-b2e4-19b427ad6cea.png)
 
-### Steal WiFi Credentials
+### 5. Steal WiFi Credentials
 
 Now we will atempt to steal the WiFi credentials by reading the flash contents of the ESP32 directly. Download the first 65536 bytes of the firmware from the ESP32 using the following command:
 
@@ -91,7 +91,7 @@ Now we will enable flash encryption, a security mechanism supported by the ESP32
 
 For this project, we will only use Development Mode.
 
-### Configure the Application
+### 7. Configure the Application
 
 Open the configuration menu again:
 
@@ -107,7 +107,7 @@ Press ESC and change to the `Component config` menu. From here, navigate to the 
 
 Now leave and save the configuration.
 
-### Upload the Application
+### 8. Upload the Application
 
 Build, flash, and monitor the application just as before:
 
@@ -128,7 +128,7 @@ idf.py encrypted-flash
 ![image](https://user-images.githubusercontent.com/69218457/162789473-2f6f5b53-7296-4fb9-936a-a6ec54d657e9.png)
 
 
-### Try to Steal WiFi Credentials
+## 9. Try to Steal WiFi Credentials
 
 Now we will download the firmware and try to steal the WiFi credentials, just as before. Since we changed the partition table offset, the firmware was actually flashed at offset 0x20000 instead of 0x10000. Therefore, to download the first 65536 bytes of the firmware, use the following command:
 
@@ -144,11 +144,7 @@ strings flash_encrypted.bin | grep -A1 <SSID>   # Replace <SSID> with your WiFi 
 
 You will see that nothing is returned. This indicates that flash encryption is enabled and the WiFi credentials can no longer be recovered.
 
-## Flash Plaintext Firmware After Flash Encryption is Enabled
-
-As long as the DISABLE_DL_ENCRYPT eFuse remains 0, the user can always upload plaintext firmware to the board, even after flash encryption is enabled. The firmware will be encrypted by the ESP32's UART bootloader when the user uploads new firmware. To upload new firmware after flash encryption is enabled, simply replace all `idf.py flash` commands with `idf.py encrypted-flash`.
-
-## Disable Flash Encryption
+## 10. Disable Flash Encryption
 
 If the user wishes to disable flash encryption, please follow the steps below.
 
@@ -170,16 +166,22 @@ espefuse.py burn_efuse FLASH_CRYPT_CNT
 
 Follow the instructions and type `BURN` to finish setting the eFuse.
 
+
+## Notes
+
+### Flash Plaintext Firmware After Flash Encryption is Enabled
+
+As long as the DISABLE_DL_ENCRYPT eFuse remains 0, the user can always upload plaintext firmware to the board, even after flash encryption is enabled. The firmware will be encrypted by the ESP32's UART bootloader when the user uploads new firmware. To upload new firmware after flash encryption is enabled, simply replace all `idf.py flash` commands with `idf.py encrypted-flash`.
+
 ### Re-enable Flash Encryption
 
 To re-enable flash encryption, enable the option `Enable flash encryption on boot` in the configuration menu, and build and flash the application. The bootloader will automatically set the next bit in the FLASH_CRYPT_CNT eFuse to enable flash encryption; there is no need for the user to manually burn the efuse.
 
-## Enable Secure Boot After Flash Encryption is Enabled
+### Enable Secure Boot After Flash Encryption is Enabled
 
 You can follow [this procedure](https://github.com/PBearson/ESP32_Secure_Boot_Tutorial) to enable secure boot even after flash encryption already enabled. There is no need to disable flash encryption as long as the DOWNLOAD_DL_ENCRYPT eFuse is set to 0.
 
-
-## Notes
+### espefuse.py
 ```
 espefuse.py summary
 ```
