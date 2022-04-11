@@ -2,18 +2,24 @@
 
 This project demonstrates how to enable flash encryption (Development Mode) on the ESP32. First, we will see how devices without flash encryption are insecure. We will steal the WiFi credentials of a firmware running on the ESP32. Then we will enable flash encryption and show how an attacker cannot steal credentials when flash encryption is enabled. Finally, we will show how the user can upload additional firmware after flash encryption has been enabled, and how flash encryption can be disabled.
 
-## Prerequisites
+## Setup
 
 For this project, you need:
 
 * An ESP32 development board, such as Hiletgo ESP-WROOM-32.
 * A Linux Virtual Machine with ESP-IDF (version 4) installed.
 
-Follow these instructions to install ESP-IDF version 4.4: https://docs.espressif.com/projects/esp-idf/en/v4.4/esp32/get-started/index.html#get-started-get-prerequisites
+### Install the ESP-IDF extension 
+Our new Ubuntu VM is intalled with the ESP-IDF extension. If you do not want to install it yourself, please download it at the specified website.
+
+Otherwise, please follow [this tutorial](https://github.com/espressif/vscode-esp-idf-extension/blob/master/docs/tutorial/install.md) to iinstall it within VS Code.
+
+### Download this repository
 
 After installing ESP-IDF, download this repository into your VM:
 
 ```
+cd ~/Documents
 git clone https://github.com/PBearson/ESP32_Flash_Encryption_Tutorial.git
 ```
 
