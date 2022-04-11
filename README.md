@@ -33,6 +33,7 @@ Within the VS Code terminal, set up the environment variables so that we can use
 ```
 . $HOME/esp/esp-idf/export.sh
 ```
+All later commands shall be entered in the same terminal.
 
 ### 
 
@@ -57,6 +58,7 @@ Now build, upload, and monitor the app:
 ```
 idf.py build flash monitor
 ```
+*CTRL+]* to terminate the serial monitor.
 
 **NOTE: If using the Hiletgo ESP-WROOM-32 development board, you may need to hold down the IO0 button on the ESP32 when the build system tries to connect to the ESP32's serial port. If you do not hold down the IO0 button during this step, the build system may fail to detect the serial port.**
 
