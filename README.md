@@ -113,7 +113,7 @@ Build, flash, and monitor the application just as before:
 idf.py build flash monitor
 ```
 
-When the serial terminal connects to the ESP32, you should see that the bootloader, partition table, and firmware are all encrypted:
+When the serial terminal connects to the ESP32, you should see that the bootloader, partition table, and firmware are all encrypted. If you see errors, continue to read.
 
 ![image](https://user-images.githubusercontent.com/11084018/158298515-6e9a4f03-aceb-4077-ae67-d2e44b9dcca5.png)
 
@@ -124,7 +124,6 @@ idf.py encrypted-flash
 ````
 
 ![image](https://user-images.githubusercontent.com/69218457/162789473-2f6f5b53-7296-4fb9-936a-a6ec54d657e9.png)
-
 
 
 ### Try to Steal WiFi Credentials
@@ -176,3 +175,9 @@ To re-enable flash encryption, enable the option `Enable flash encryption on boo
 ## Enable Secure Boot After Flash Encryption is Enabled
 
 You can follow [this procedure](https://github.com/PBearson/ESP32_Secure_Boot_Tutorial) to enable secure boot even after flash encryption already enabled. There is no need to disable flash encryption as long as the DOWNLOAD_DL_ENCRYPT eFuse is set to 0.
+
+
+## Notes
+```
+espefuse.py summary
+```
