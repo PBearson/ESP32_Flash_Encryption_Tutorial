@@ -25,6 +25,8 @@ Use *File* -> *Open Folder ...* to load the project into VS Code
 
 ### Start terminal and set up the environment variables
 
+<img src="imgs/VSCodeTerminal.png">
+
 ```
 . $HOME/esp/esp-idf/export.sh
 ```
