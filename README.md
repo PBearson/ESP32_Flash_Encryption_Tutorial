@@ -9,8 +9,6 @@ For this project, you need:
 * An ESP32 development board, such as Hiletgo ESP-WROOM-32.
 * A Linux Virtual Machine with ESP-IDF (version 4) installed.
 
-You are encouraged to use the following Ubuntu VM: https://www.dropbox.com/s/0g7w8qduzj2rb1k/UbuntuIoT.ova?dl=0
-
 Follow these instructions to install ESP-IDF version 4.4: https://docs.espressif.com/projects/esp-idf/en/v4.4/esp32/get-started/index.html#get-started-get-prerequisites
 
 After installing ESP-IDF, download this repository into your VM:
