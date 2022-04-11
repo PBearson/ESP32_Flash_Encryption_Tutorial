@@ -20,6 +20,18 @@ cd ~/Documents
 git clone https://github.com/PBearson/ESP32_Flash_Encryption_Tutorial.git
 ```
 
+### Load the project into VS Code
+Use *File* -> *Open Folder ...* to load the project into VS Code
+
+### Start terminal and set up the environment variables
+
+```
+. $HOME/esp/esp-idf/export.sh
+```
+
+
+### 
+
 ## Steal WiFi Credentials in Plaintext Flash
 
 First, we will see how an attacker can steal the credentials from a plaintext firmware.
