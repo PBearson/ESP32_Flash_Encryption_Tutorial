@@ -33,7 +33,7 @@ Within the VS Code terminal, set up the environment variables so that we can use
 ```
 . $HOME/esp/esp-idf/export.sh
 ```
-All later commands shall be entered in the same terminal.
+**All later commands shall be entered in the same terminal**.
 
 ### 
 
