@@ -9,7 +9,7 @@ For this project, we need to use a variety of ESP-IDF tools. For simplicity, we 
 ### 1. Install the ESP-IDF extension 
 Our new Ubuntu VM is intalled with the ESP-IDF extension. If you do not want to install it yourself, please download it at the specified website.
 
-Otherwise, please follow [this tutorial](https://github.com/espressif/vscode-esp-idf-extension/blob/master/docs/tutorial/install.md) to iinstall it within VS Code.
+Otherwise, please follow [this tutorial](https://github.com/espressif/vscode-esp-idf-extension/blob/master/docs/tutorial/install.md) to install it within VS Code.
 
 ### 2. Download this repository
 
