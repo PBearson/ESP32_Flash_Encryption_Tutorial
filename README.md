@@ -6,7 +6,7 @@ This project demonstrates how to enable [flash encryption (Development Mode) on 
 
 For this project, we need to use a variety of ESP-IDF tools. For simplicity, we will use the ESP-IDF extension with VS Code and its terminal to use the tools.
 
-### Prerequisite: Install the ESP-IDF extension 
+### 0. Prerequisite: Install the ESP-IDF extension 
 Our new Ubuntu VM is intalled with the ESP-IDF extension. If you do not want to install it yourself, please download it at the specified website.
 
 Otherwise, please follow [this tutorial](https://github.com/espressif/vscode-esp-idf-extension/blob/master/docs/tutorial/install.md) to install it within VS Code.
