@@ -2,9 +2,9 @@
 
 This project demonstrates how to enable [flash encryption (Development Mode) on the ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/security/flash-encryption.html) and how secure storage like eFuse is used to protect sensitive keys. First, we will see how devices without flash encryption are insecure. We will steal the WiFi credentials of a firmware running on the ESP32. Then we will enable flash encryption and show how an attacker cannot steal credentials when flash encryption is enabled. Finally, we will show how the user can upload additional firmware after flash encryption has been enabled, and how flash encryption can be disabled.
 
-In flash encryption, firmware bootloader (i.e. second stage bootloaded loaded by the ROM bootloader) generates an AES-256 bit key and writes it into the flash_encryption eFuse, which is a secure storage. Software cannot access this key, which is used entirely by hardware for flash encryption. The reason why this AES-256 bit key is protected in the secure storage is if it is lost, an attacker can use it to decrypt a dumped firmware.
+In flash encryption, firmware bootloader (i.e. second stage bootloaded loaded by the ROM bootloader) generates an AES-256 bit key and saves it in the flash_encryption eFuse, which is a secure storage. Software cannot access this key, which is used entirely by hardware for flash encryption. The reason why this AES-256 bit key is protected in the secure storage is if it is lost, an attacker can use it to decrypt a dumped firmware.
 
-The figure below shows the AES key storage. Please note there are many [other eFuses](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/security/flash-encryption.html#relevant-efuses) for different purposes.
+The figure below shows the AES key storage (i.e. flash_encryption eFuse). Please note there are many [other eFuses](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/security/flash-encryption.html#relevant-efuses) for different purposes.
 <img src="imgs/eFuseBLKs.PNG" width=500>
 
 ## Setup
