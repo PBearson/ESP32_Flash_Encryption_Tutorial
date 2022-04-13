@@ -12,7 +12,7 @@ The figure shows the AES key storage (i.e. flash_encryption eFuse) in eFuses. Pl
 
 ## Setup
 
-For this project, we need to use a variety of ESP-IDF tools. For simplicity, we will use the ESP-IDF extension within VS Code and its terminal to use the tools.
+For this project, we need to use a variety of ESP-IDF tools. For simplicity, we will utilize the ESP-IDF extension within VS Code and its terminal to use the tools.
 
 ### 0. Prerequisite: Install the ESP-IDF extension 
 Our new Ubuntu VM is intalled with the ESP-IDF extension. If you do not want to install it yourself, please download it at the specified website.
