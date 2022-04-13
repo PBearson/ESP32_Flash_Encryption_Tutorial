@@ -14,7 +14,6 @@ Otherwise, please follow [this tutorial](https://github.com/espressif/vscode-esp
 ### 1. Download this repository
 
 After installing ESP-IDF, download this repository into your VM:
-
 ```
 cd ~/Documents
 git clone https://github.com/PBearson/ESP32_Flash_Encryption_Tutorial.git
@@ -23,6 +22,7 @@ git clone https://github.com/PBearson/ESP32_Flash_Encryption_Tutorial.git
 ### 2. Load the project into VS Code
 Use *File* -> *Open Folder ...* to load the project into VS Code
 
+Please note: this is not a PlatformIO project, but a native ESP-IDF project.
 ### 3. Start terminal and set up the environment variables
 
 We will start the terminal within VS Code (not the Linux terminal). 
