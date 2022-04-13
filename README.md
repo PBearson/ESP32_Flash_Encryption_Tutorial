@@ -5,7 +5,8 @@ This project demonstrates how to enable [flash encryption (Development Mode) on 
 ## Secure key storage
 In flash encryption, firmware bootloader (i.e. second stage bootloaded loaded by the ROM bootloader) generates an AES-256 bit key and saves it in the flash_encryption eFuse, which is a secure storage. Software cannot access this key, which is used entirely by hardware for flash encryption. The reason why this AES-256 bit key is protected in the secure storage is if it is lost, an attacker can use it to decrypt a dumped firmware.
 
-The figure below shows the AES key storage (i.e. flash_encryption eFuse) in eFuses. Please note there are many [other eFuses](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/security/flash-encryption.html#relevant-efuses) for different purposes.
+ESP32 has 4 eFuse blocks as secure key storage as the figure below shows. Each block is 256 bits.
+The figure shows the AES key storage (i.e. flash_encryption eFuse) in eFuses. Please note there are many [other eFuses](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/security/flash-encryption.html#relevant-efuses) for different purposes.
 
 <img src="imgs/eFuseBLKs.PNG" width=500>
 
