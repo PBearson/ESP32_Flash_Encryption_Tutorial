@@ -4,6 +4,8 @@ This project demonstrates how to enable [flash encryption (Development Mode) on 
 
 In flash encryption, firmware bootloader (i.e. second stage bootloaded loaded by the ROM bootloader) generates an AES-256 bit key and writes it into the flash_encryption eFuse, which is a secure storage. Software cannot access this key, which is use entirely by hardware for flash encryption. The reason why this AES-256 bit key is protected in the secure storage is if it is lost, an attacker can use it to decrypt a dumped firmware.
 
+<img src="imgs/eFuseBLKs.PNG">
+
 ## Setup
 
 For this project, we need to use a variety of ESP-IDF tools. For simplicity, we will use the ESP-IDF extension with VS Code and its terminal to use the tools.
