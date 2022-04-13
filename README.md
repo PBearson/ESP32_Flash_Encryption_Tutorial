@@ -164,6 +164,10 @@ espefuse.py burn_efuse FLASH_CRYPT_CNT
 
 Follow the instructions and type `BURN` to finish setting the eFuse.
 
+Now use the serial monitor to observe the output from the ESP32. There is flash encyption information any more. Preset the reset button of the ESP32 and restart it if there is no output from the ESP32.
+```
+idf.py monitor
+```
 
 ## Notes
 
