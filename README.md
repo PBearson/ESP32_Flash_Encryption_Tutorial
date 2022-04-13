@@ -53,14 +53,12 @@ Using the up/down arrow keys, navigate to the `Example Configuration` menu, pres
 
 ### 4. Upload the Application
 
-Now build, upload, and monitor the app:
+Now build, upload, and monitor the app. **NOTE: If using the Hiletgo ESP-WROOM-32 development board, you may need to hold down the IO0 button on the ESP32 when the build system tries to connect to the ESP32's serial port. If you do not hold down the IO0 button during this step, the build system may fail to detect the serial port.**
 
 ```
 idf.py build flash monitor
 ```
 *CTRL+]* to terminate the serial monitor when needed.
-
-**NOTE: If using the Hiletgo ESP-WROOM-32 development board, you may need to hold down the IO0 button on the ESP32 when the build system tries to connect to the ESP32's serial port. If you do not hold down the IO0 button during this step, the build system may fail to detect the serial port.**
 
 After a few minutes of compiling, the project will be flashed to the board, and the serial terminal will connect to the ESP32. You should see the application successfully connect to your WiFi:
 
