@@ -107,7 +107,7 @@ Do not touch other configurations. Now leave and save the configuration.
 
 ### 8. Upload the Application
 
-Build, flash, and monitor the application just as before:
+Build, flash, and monitor the application just as before. Hold down the IO0 button whenever needed.
 
 ```
 idf.py build flash monitor
