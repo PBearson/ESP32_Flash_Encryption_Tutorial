@@ -6,12 +6,12 @@ This project demonstrates how to enable [flash encryption (Development Mode) on 
 
 For this project, we need to use a variety of ESP-IDF tools. For simplicity, we will use the ESP-IDF extension with VS Code and its terminal to use the tools.
 
-### 1. Install the ESP-IDF extension 
+### Prerequisite: Install the ESP-IDF extension 
 Our new Ubuntu VM is intalled with the ESP-IDF extension. If you do not want to install it yourself, please download it at the specified website.
 
 Otherwise, please follow [this tutorial](https://github.com/espressif/vscode-esp-idf-extension/blob/master/docs/tutorial/install.md) to install it within VS Code.
 
-### 2. Download this repository
+### 1. Download this repository
 
 After installing ESP-IDF, download this repository into your VM:
 
@@ -20,10 +20,10 @@ cd ~/Documents
 git clone https://github.com/PBearson/ESP32_Flash_Encryption_Tutorial.git
 ```
 
-### Load the project into VS Code
+### 2. Load the project into VS Code
 Use *File* -> *Open Folder ...* to load the project into VS Code
 
-### Start terminal and set up the environment variables
+### 3. Start terminal and set up the environment variables
 
 We will start the terminal within VS Code (not the Linux terminal). 
 
@@ -41,7 +41,7 @@ Within the VS Code terminal, set up the environment variables so that we can use
 
 First, we will see how an attacker can steal the credentials from a plaintext firmware.
 
-### 3. Configure the WiFi Application
+### 4. Configure the WiFi Application
 
 Within the terminal with the configured environment, navigate to the root directory of this project if needed. Open the project configuration menu:
 
@@ -51,7 +51,7 @@ idf.py menuconfig
 
 Using the up/down arrow keys, navigate to the `Example Configuration` menu, press _enter_ to enter into the menu, then press _enter_ to begin typing your WiFi SSID. When you are done, do the same for the WiFi Password. After you are done, press _ESC_ several times until you are prompted to save. Press _Y_ to save and exit.
 
-### 4. Upload the Application
+### 5. Upload the Application
 
 Now build, upload, and monitor the app. **NOTE: If using the Hiletgo ESP-WROOM-32 development board, you may need to hold down the IO0 button on the ESP32 when the build system tries to connect to the ESP32's serial port. If you do not hold down the IO0 button during this step, the build system may fail to detect the serial port.**
 
@@ -64,7 +64,7 @@ After a few minutes of compiling, the project will be flashed to the board, and 
 
 ![image](https://user-images.githubusercontent.com/11084018/158292160-46c9c3f7-0633-4d00-b2e4-19b427ad6cea.png)
 
-### 5. Steal WiFi Credentials
+### 6. Steal WiFi Credentials
 
 Now we will atempt to steal the WiFi credentials by reading the flash contents of the ESP32 directly. Download the first 65536 bytes of the firmware from the ESP32 using the following command:
 
