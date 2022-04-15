@@ -1,4 +1,4 @@
-# ESP32 Flash Encryption Tutorial
+# ESP32 Flash Encryption
 
 This project demonstrates how to enable [flash encryption (Development Mode) on the ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/security/flash-encryption.html) and how secure storage like eFuse is used to protect sensitive keys. First, we will see how devices without flash encryption are insecure. We will steal the WiFi credentials of a firmware running on the ESP32. Then we will enable flash encryption and show how an attacker cannot steal credentials when flash encryption is enabled. Finally, we will show how the user can upload additional firmware after flash encryption has been enabled, and how flash encryption can be disabled.
 
