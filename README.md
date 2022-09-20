@@ -187,7 +187,7 @@ To re-enable flash encryption, enable the option `Enable flash encryption on boo
 
 ### Enable Secure Boot After Flash Encryption is Enabled
 
-You can follow [this procedure](https://github.com/PBearson/ESP32_Secure_Boot_Tutorial) to enable secure boot even after flash encryption already enabled. There is no need to disable flash encryption as long as the DOWNLOAD_DL_ENCRYPT eFuse is set to 0.
+You can follow [this procedure](https://github.com/PBearson/ESP32_Secure_Boot_Tutorial) to enable secure boot even after flash encryption already enabled. There is no need to disable flash encryption as long as the DISABLE_DL_ENCRYPT eFuse is set to 0.
 
 ### espefuse.py
 ```
