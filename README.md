@@ -3,7 +3,7 @@
 This project demonstrates how to enable [flash encryption (Development Mode) on the ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/security/flash-encryption.html) and how secure storage like eFuse is used to protect sensitive keys. First, we will see how devices without flash encryption are insecure. We will steal the WiFi credentials of a firmware running on the ESP32. Then we will enable flash encryption and show how an attacker cannot steal credentials when flash encryption is enabled. Finally, we will show how the user can upload additional firmware after flash encryption has been enabled, and how flash encryption can be disabled.
 
 ## eFuses as secure key storage
-In flash encryption, firmware bootloader (i.e. second stage bootloaded, which is loaded by the ROM bootloader) generates an AES-256 bit key and saves it in the *flash_encryption* eFuse, which is a secure storage. Software cannot access this key, which is used entirely by hardware for flash encryption. The reason why this AES-256 bit key is protected in the secure storage is if it is lost, an attacker can use it to decrypt a dumped firmware.
+In flash encryption, firmware bootloader (i.e. second stage bootloader, which is loaded by the ROM bootloader) generates an AES-256 bit key and saves it in the *flash_encryption* eFuse, which is a secure storage. Software cannot access this key, which is used entirely by hardware for flash encryption. The reason why this AES-256 bit key is protected in the secure storage is if it is lost, an attacker can use it to decrypt a dumped firmware.
 
 ESP32 has 4 eFuse blocks as secure key storage as the figure below shows. Each block is 256 bits.
 The figure shows the AES key storage (i.e. flash_encryption eFuse) in eFuses. Please note there are many [other eFuses](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/security/flash-encryption.html#relevant-efuses) for different purposes.
@@ -90,8 +90,8 @@ strings flash.bin | grep -A1 <SSID>   # Replace <SSID> with your WiFi SSID
 
 Now we will enable flash encryption, a security mechanism supported by the ESP32 that defeats attacks like the one demonstrated above. The ESP32 supports two kinds of flash encryption modes: Release, and Development:
 
-* In **Release Mode**, flash encryption is permanently enabled, and the DOWNLOAD_DL_ENCRYPT eFuse is burned. This means the user cannot upload anymore plaintext firmware to the board via UART any more, and the firmware can only be updated via OTA in the release mode.
-* In **Development Mode**, flash encryption can be disabled a limited number of times, and the DOWNLOAD_DL_ENCRYPT eFuse is not burned. This allows the user to upload new plaintext firmware.
+* In **Release Mode**, flash encryption is permanently enabled, and the DISABLE_DL_ENCRYPT eFuse is burned. This means the user cannot upload anymore plaintext firmware to the board via UART any more, and the firmware can only be updated via OTA in the release mode.
+* In **Development Mode**, flash encryption can be disabled a limited number of times, and the DISABLE_DL_ENCRYPT eFuse is not burned. This allows the user to upload new plaintext firmware.
 
 For this project, we will only use Development Mode.
 
