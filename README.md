@@ -15,29 +15,34 @@ The figure shows the AES key storage (i.e. flash_encryption eFuse) in eFuses. Pl
 For this project, we need to use a variety of ESP-IDF tools. For simplicity, we will utilize the ESP-IDF extension within VS Code and its terminal to use the tools.
 
 ### 0. Prerequisite: Install the ESP-IDF extension 
-Our new Ubuntu VM installed with ESP-IDF and Visual Studio Code with the ESP-IDF extension. If you do not want to install it yourself. Otherwise, please follow [this tutorial](https://github.com/espressif/vscode-esp-idf-extension/blob/master/docs/tutorial/install.md) to install it within VS Code.
+Our new Ubuntu VM installed with ESP-IDF and Visual Studio Code with the ESP-IDF extension. If you do not want to install it yourself please download the VM from the specified website. 
+
+Otherwise, please follow [this tutorial](https://github.com/espressif/vscode-esp-idf-extension/blob/master/docs/tutorial/install.md) to install it within VS Code.
 
 ### 1. Download this repository
 
 After installing ESP-IDF, download this repository into your VM:
 ```sh
-cd ~/Documents
 git clone https://github.com/PBearson/ESP32_Flash_Encryption_Tutorial.git
 ```
+ **Note**: By default, this project is already located in the ``` ~/esp/IoT-Examples/ ``` directory of the Ubuntu VM.
 
 ### 2. Load the project into VS Code
 Use *File* -> *Open Folder ...* to load the project into VS Code
 
 ### 3. Start terminal and set up the environment variables
 
-We will start the ESP-IDF terminal within VS Code (not the Linux terminal). 
+We will start the ESP-IDF terminal within VS Code (not the Linux terminal) using the button at the bottom of VS Code. 
 
-<img src="imgs/VSCodeTerminal.png">
+<img src="imgs/VSCode-ESP-Terminal.png">
 
 Otherwise Within a Linux terminal, we will need to set up the environment variables so that we can use all the tools without inputting the full path names. This can be done with the ``` export.sh ``` script as shown below.
 ```sh
 . $HOME/esp/esp-idf/export.sh
 ```
+
+<img src="imgs/VSCodeTerminal.png">
+
 **All later commands shall be entered in the same terminal**.
 
 ## Steal WiFi Credentials in Plaintext Flash
