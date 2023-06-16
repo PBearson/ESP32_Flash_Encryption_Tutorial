@@ -15,14 +15,12 @@ The figure shows the AES key storage (i.e. flash_encryption eFuse) in eFuses. Pl
 For this project, we need to use a variety of ESP-IDF tools. For simplicity, we will utilize the ESP-IDF extension within VS Code and its terminal to use the tools.
 
 ### 0. Prerequisite: Install the ESP-IDF extension 
-Our new Ubuntu VM is intalled with the ESP-IDF extension. If you do not want to install it yourself, please download it at the specified website.
-
-Otherwise, please follow [this tutorial](https://github.com/espressif/vscode-esp-idf-extension/blob/master/docs/tutorial/install.md) to install it within VS Code.
+Our new Ubuntu VM installed with ESP-IDF and Visual Studio Code with the ESP-IDF extension. If you do not want to install it yourself. Otherwise, please follow [this tutorial](https://github.com/espressif/vscode-esp-idf-extension/blob/master/docs/tutorial/install.md) to install it within VS Code.
 
 ### 1. Download this repository
 
 After installing ESP-IDF, download this repository into your VM:
-```
+```sh
 cd ~/Documents
 git clone https://github.com/PBearson/ESP32_Flash_Encryption_Tutorial.git
 ```
@@ -30,15 +28,14 @@ git clone https://github.com/PBearson/ESP32_Flash_Encryption_Tutorial.git
 ### 2. Load the project into VS Code
 Use *File* -> *Open Folder ...* to load the project into VS Code
 
-Please note: this is not a PlatformIO project, but a native ESP-IDF project.
 ### 3. Start terminal and set up the environment variables
 
-We will start the terminal within VS Code (not the Linux terminal). 
+We will start the ESP-IDF terminal within VS Code (not the Linux terminal). 
 
 <img src="imgs/VSCodeTerminal.png">
 
-Within the VS Code terminal, set up the environment variables so that we can use all the tools without inputting the full path names.
-```
+Otherwise Within a Linux terminal, we will need to set up the environment variables so that we can use all the tools without inputting the full path names. This can be done with the ``` export.sh ``` script as shown below.
+```sh
 . $HOME/esp/esp-idf/export.sh
 ```
 **All later commands shall be entered in the same terminal**.
@@ -51,7 +48,7 @@ First, we will see how an attacker can steal the credentials from a plaintext fi
 
 Within the terminal with the configured environment, navigate to the root directory of this project if needed. Open the project configuration menu:
 
-```
+```sh
 idf.py menuconfig
 ```
 
@@ -61,10 +58,10 @@ Using the up/down arrow keys, navigate to the `Example Configuration` menu, pres
 
 Now build, upload, and monitor the app. **NOTE: If using the Hiletgo ESP-WROOM-32 development board, you may need to hold down the IO0 button on the ESP32 when the build system tries to connect to the ESP32's serial port. If you do not hold down the IO0 button during this step, the build system may fail to detect the serial port.**
 
-```
+```sh
 idf.py build flash monitor
 ```
-*CTRL+]* to terminate the serial monitor when needed.
+*CTRL+]* is used to terminate the serial monitor when needed.
 
 After a few minutes of compiling, the project will be flashed to the board, and the serial terminal will connect to the ESP32. You should see the application successfully connect to your WiFi:
 
@@ -72,9 +69,9 @@ After a few minutes of compiling, the project will be flashed to the board, and 
 
 ### 6. Steal WiFi Credentials
 
-Now we will atempt to steal the WiFi credentials by reading the flash contents of the ESP32 directly. Download the first 65536 bytes of the firmware from the ESP32 using the following command:
+Now we will attempt to steal the WiFi credentials by reading the flash contents of the ESP32 directly. Download the first 65536 bytes of the firmware from the ESP32 using the following command:
 
-```
+```sh
 esptool.py read_flash 0x10000 0x10000 flash.bin
 ```
 
@@ -82,7 +79,7 @@ This command reads the contents from the flash chip in the address range 0x10000
 
 Now locate the WiFi credentials in the firmware with the following command:
 
-```
+```sh
 strings flash.bin | grep -A1 <SSID>   # Replace <SSID> with your WiFi SSID
 ```
 
@@ -99,7 +96,7 @@ For this project, we will only use Development Mode.
 
 Open the configuration menu again:
 
-```
+```sh
 idf.py menuconfig
 ```
 
@@ -115,7 +112,7 @@ Do not touch other configurations. Now leave and save the configuration.
 
 Build, flash, and monitor the application just as before. Hold down the IO0 button whenever needed.
 
-```
+```sh
 idf.py build flash monitor
 ```
 
@@ -136,13 +133,13 @@ idf.py encrypted-flash
 
 Now we will download the firmware and try to steal the WiFi credentials, just as before. Since we changed the partition table offset, the firmware was actually flashed at offset 0x20000 instead of 0x10000. Therefore, to download the first 65536 bytes of the firmware, use the following command:
 
-```
+```sh
 esptool.py read_flash 0x20000 0x10000 flash_encrypted.bin
 ```
 
 Now try to read the credentials just like before:
 
-```
+```sh
 strings flash_encrypted.bin | grep -A1 <SSID>   # Replace <SSID> with your WiFi SSID
 ```
 
@@ -158,20 +155,31 @@ First, open the configuration menu, navigate to `Security features`, and disable
 
 Next, build and flash the application: 
 
-```
+```sh
 idf.py build flash
 ```
 
 Finally, set the next bit in the FLASH_CRYPT_CNT eFuse to disable flash encryption:
 
-```
+```sh
 espefuse.py burn_efuse FLASH_CRYPT_CNT
 ````
 
 Follow the instructions and type `BURN` to finish setting the eFuse.
 
-Now use the serial monitor to observe the output from the ESP32. There is flash encyption information any more. Preset the reset button of the ESP32 and restart it if there is no output from the ESP32.
+**NOTE**: This may throw an error ``` A fatal error occurred: New value required for efuse 'FLASH_CRYPT_CNT' (given None)  ``` in this case we need to provide the bit value to set.  This needs to be some binary value with an even number of bits, the first value in my case was 3 and this worked.
+
+```sh
+espefuse.py burn_efuse FLASH_CRYPT_CNT
 ```
+
+We can use the command below to see the current efuse state. This will be after the *=* sign.
+```sh
+espefuse.py summary | grep -A 3 -B 3 "FLASH_CRYPT"
+```
+
+Now use the serial monitor to observe the output from the ESP32. There is no more flash encyption information being printed any more. Preset the reset button of the ESP32 and restart it if there is no output from the ESP32.
+```sh
 idf.py monitor
 ```
 
@@ -190,7 +198,7 @@ To re-enable flash encryption, enable the option `Enable flash encryption on boo
 You can follow [this procedure](https://github.com/PBearson/ESP32_Secure_Boot_Tutorial) to enable secure boot even after flash encryption already enabled. There is no need to disable flash encryption as long as the DISABLE_DL_ENCRYPT eFuse is set to 0.
 
 ### espefuse.py
-```
+```sh
 espefuse.py summary
 ```
 
